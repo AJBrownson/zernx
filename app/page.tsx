@@ -61,7 +61,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row w-full md:gap-2 md:max-w-225 mx-auto">
 
           {/* referral code input */}
-          <div className="bg-[#010501] mt-5 py-3 px-4 rounded-md">
+          <div className="bg-[#010501] mt-5 py-3 md:px-4 rounded-md">
             <div className="relative mt-4 flex justify-between items-center py-2 px-3 rounded-xl bg-[#0b0f0e] border border-white/5 overflow-hidden md:w-[440px]">
               {/* bottom glow */}
               <div className="pointer-events-none absolute left-0.5 right-0.5 bottom-px h-0.5 rounded-full bg-[linear-gradient(to_top,rgba(32,245,105,0.95),rgba(32,245,105,0.35),rgba(32,245,105,0))]" />
@@ -127,12 +127,13 @@ export default function Home() {
           </div>
 
           {/* referral rules */}
-          <div className="bg-[#010501] mt-3 md:mt-5 px-4 rounded-md">
-            <h2 className="font-manrope font-semibold text-sm md:text-base">
+          <div className="bg-transparent md:bg-[#010501] mt-3 md:mt-5 md:px-4 rounded-md">
+            <h2 className="font-manrope font-semibold text-sm md:text-base mb-3 md:mb-0">
               Referral rules
             </h2>
-
-            <ol className="space-y-4 mt-2 mb-4">
+          
+          <div className="bg-[#151313] md:bg-transparent py-2 px-2 rounded-xl">
+            <ol className="space-y-2 md:space-y-4 mt-2 md:mb-4">
               {referralRules.map((rule, index) => (
                 <li
                   key={index}
@@ -143,6 +144,7 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+            </div>
           </div>
 
         </div>
