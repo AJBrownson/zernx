@@ -57,6 +57,7 @@ export default function ReferralLeaderboard() {
   ];
 
   return (
+    <>
     <div className="bg-[#010501] rounded-xl p-4 w-full">
       {/* Header with Tabs */}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
@@ -261,5 +262,6 @@ export default function ReferralLeaderboard() {
         </div>
       )}
     </div>
+    </>
   );
 }
