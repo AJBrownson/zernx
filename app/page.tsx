@@ -1,15 +1,20 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+
 import ChartHeader from "@/components/chartHeader";
+import InviteBanner from "@/components/inviteBanner";
 import { FaShareFromSquare } from "react-icons/fa6";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import { LuArrowRightToLine } from "react-icons/lu";
 
+
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
 
   const userWalletAddress = "0x09....879";
   const reward = 20.61;
@@ -35,35 +40,23 @@ export default function Home() {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  const handleGenerate = async () => {
+    router.push("/referrals");
+  };
+
   return (
     <>
       <ChartHeader />
 
       <section className="mt-4 md:mt-12 px-4 py-4">
-        {/* Invite friends banner */}
-        <div className="relative overflow-hidden flex justify-between items-center rounded-md bg-linear-to-b from-[#B1F128] via-[#00C65F] via-31% to-[#009288] w-full py-4 md:max-w-225 mx-auto">
-          <p className="ml-5 md:ml-10 font-bold font-manrope text-base md:text-2xl w-28 md:w-52.5 text-[#010501]">
-            Invite Friends. Unlock rewards.
-          </p>
-
-          <Image
-            src="/banner-img.svg"
-            alt=""
-            width={200}
-            height={200}
-            className="absolute -right-16 md:right-0 bottom-0 h-full w-auto object-contain rounded-br-md"
-          />
-        </div>
+        <InviteBanner />
 
         {/* referral rules div */}
         <div className="flex flex-col md:flex-row w-full md:gap-2 md:max-w-225 mx-auto">
           {/* referral code input */}
           <div className="bg-[#010501] mt-5 py-3 md:px-4 rounded-md">
-            <div
-              className="relative mt-4 flex justify-between items-center px-4 py-3 rounded-2xl bg-[#0b0f0e] border border-white/5 overflow-hidden md:w-110">
-              <div
-                className="pointer-events-none absolute inset-x-4 bottom-px h-0.5 rounded-full bg-[linear-gradient(to_right,rgba(177,241,40,0),rgba(177,241,40,0.95),rgba(177,241,40,0))]"
-              />
+            <div className="relative mt-4 flex justify-between items-center px-4 py-3 rounded-2xl bg-[#0b0f0e] border border-white/5 overflow-hidden md:w-110">
+              <div className="pointer-events-none absolute inset-x-4 bottom-px h-px rounded-full bg-[linear-gradient(to_right,rgba(177,241,40,0),rgba(177,241,40,0.95),rgba(177,241,40,0))]" />
 
               <span className="relative z-10">
                 <p className="font-manrope font-medium text-xs md:text-sm text-white/90">
@@ -74,8 +67,7 @@ export default function Home() {
                 </p>
               </span>
 
-              <button
-                className="relative z-10 flex items-center gap-1 font-manrope font-medium text-xs md:text-sm text-[#B5B5B5]">
+              <button className="relative z-10 flex items-center gap-1 font-manrope font-medium text-xs md:text-sm text-[#B5B5B5]">
                 Position <LuArrowRightToLine size={12} />
               </button>
             </div>
@@ -105,7 +97,7 @@ export default function Home() {
                 </button>
               </span>
 
-              <button className="border-[1.5px] border-[#B1F128] text-[#B1F128] rounded-full py-2 w-full font-medium font-manrope text-sm md:text-base cursor-pointer">
+              <button onClick={handleGenerate} className="border-[1.5px] border-[#B1F128] text-[#B1F128] rounded-full py-2 w-full font-medium font-manrope text-sm md:text-base cursor-pointer">
                 Generate Referral Code
               </button>
             </div>
