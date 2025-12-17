@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import ChartHeader from "@/components/chartHeader";
 import InviteBanner from "@/components/inviteBanner";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import { FaShareFromSquare } from "react-icons/fa6";
@@ -37,8 +36,6 @@ export default function Referrals() {
 
   return (
     <>
-      {/* <ChartHeader /> */}
-
       <section className="mt-4 md:mt-12 py-4">
         {/* Invite friends banner */}
         <InviteBanner />

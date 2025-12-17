@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import ChartHeader from "@/components/chartHeader";
 import InviteBanner from "@/components/inviteBanner";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import { LuArrowRightToLine } from "react-icons/lu";
@@ -44,8 +43,6 @@ export default function Home() {
 
   return (
     <>
-      {/* <ChartHeader /> */}
-
       <section className="mt-4 md:mt-12 py-4">
         <InviteBanner />
 
