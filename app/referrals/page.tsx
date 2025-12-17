@@ -1,18 +1,19 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import ChartHeader from "@/components/chartHeader";
 import InviteBanner from "@/components/inviteBanner";
-import { FaShareFromSquare } from "react-icons/fa6";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { FaShareFromSquare } from "react-icons/fa6";
 import { LuArrowRightToLine } from "react-icons/lu";
 
 import ReferralLeaderboard from "@/components/referralLeadeboard";
+import FaqsComponent from "@/components/faqs";
 
 export default function Referrals() {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [copied, setCopied] = useState(false);
+  const [copiedReferralCode, setCopiedReferralCode] = useState(false);
+  const [copiedReferralLink, setCopiedReferralLink] = useState(false);
 
   const userWalletAddress = "0x09....879";
   const reward = 20.61;
@@ -22,17 +23,6 @@ export default function Referrals() {
   const referralCode = "TIWI91034";
   const referralLink = "https://tiwiprotocol.com/referral/TIWI91024";
 
-  const [copiedReferralCode, setCopiedReferralCode] = useState(false);
-  const [copiedReferralLink, setCopiedReferralLink] = useState(false);
-
-  const handleCopy = async () => {
-    if (!inputRef.current) return;
-
-    await navigator.clipboard.writeText(inputRef.current.value);
-    setCopied(true);
-
-    setTimeout(() => setCopied(false), 1500);
-  };
 
   const handleCopyReferralCode = async () => {
     await navigator.clipboard.writeText(referralCode);
@@ -55,9 +45,11 @@ export default function Referrals() {
         <InviteBanner />
 
         {/* referral rules div */}
-        <div className="flex flex-col md:flex-row w-full md:gap-2 md:max-w-225 mx-auto">
+        <div className="flex flex-col md:flex-row md:items-start w-full md:gap-2 md:max-w-225 mx-auto">
+
+          <div className="mb-4 md:mb-0">
           {/* referral code input */}
-          <div className="bg-[#010501] mt-5 py-3 md:px-4 rounded-md">
+          <div className="bg-[#010501] mt-5 py-3 md:px-4 rounded-xl">
             <div className="relative mt-4 flex justify-between items-center px-4 py-3 rounded-2xl bg-[#0b0f0e] border border-white/5 overflow-hidden md:w-110">
               <div className="pointer-events-none absolute inset-x-4 bottom-px h-px rounded-full bg-[linear-gradient(to_right,rgba(177,241,40,0),rgba(177,241,40,0.95),rgba(177,241,40,0))]" />
 
@@ -210,15 +202,43 @@ export default function Referrals() {
                       </button>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
+          </div>
+
+
+          {/* QR code component */}
+          <div className="mt-2 md:mt-4 py-3 md:px-4 rounded-xl bg-[#010501] w-full">
+                    <div className="flex items-center justify-center">
+                      <button className="bg-[#B1F128] cursor-pointer font-manrope font-semibold text-xs md:text-sm text-[#010501] rounded-full py-2 px-4 flex gap-2 items-center">
+                        <FaShareFromSquare />
+                        Invite Friend
+                      </button>
+
+                      <div className="ml-4">
+                        <Image
+                          src="/qr-code.svg"
+                          width={40}
+                          height={40}
+                          alt="QR Code"
+                        />
+                      </div>
+                    </div>
+          </div>
+
           </div>
 
           {/* referral leaderboard and rebate levels */}
           <div className="bg-[#010501] rounded-xl w-full">
            <ReferralLeaderboard />
           </div>
+        </div>
+
+        {/* FAQS */}
+        <div className="mt-8 w-full md:max-w-225 mx-auto">
+          <FaqsComponent />
         </div>
       </section>
     </>

@@ -61,7 +61,7 @@ export default function ReferralLeaderboard() {
     <div className="bg-[#010501] rounded-xl p-4 w-full">
       {/* Header with Tabs */}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-        <div className="flex space-x-2 w-fit">
+        <div className="flex space-x-5 w-fit">
           <button
             onClick={() => setActiveTab("leaderboard")}
             className={`py-2 rounded-md font-manrope font-medium transition cursor-pointer relative ${
@@ -122,11 +122,11 @@ export default function ReferralLeaderboard() {
                   ${frensSpotVol}
                 </p>
               </div>
-              <div className="w-full text-right">
+              <div className="w-full">
                 <p className="font-manrope text-xs text-[#B5B5B5] mb-1">
                   Frens&apos; Perp Vol.
                 </p>
-                <p className="text-right font-manrope font-semibold text-sm text-white">
+                <p className="font-manrope font-semibold text-sm text-white">
                   {frensPerpVol}
                 </p>
               </div>

@@ -2,11 +2,9 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 import ChartHeader from "@/components/chartHeader";
 import InviteBanner from "@/components/inviteBanner";
-import { FaShareFromSquare } from "react-icons/fa6";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import { LuArrowRightToLine } from "react-icons/lu";
 
