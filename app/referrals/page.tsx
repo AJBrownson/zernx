@@ -37,7 +37,7 @@ export default function Referrals() {
 
   return (
     <>
-      <ChartHeader />
+      {/* <ChartHeader /> */}
 
       <section className="mt-4 md:mt-12 py-4">
         {/* Invite friends banner */}

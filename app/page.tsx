@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-      <ChartHeader />
+      {/* <ChartHeader /> */}
 
       <section className="mt-4 md:mt-12 py-4">
         <InviteBanner />
