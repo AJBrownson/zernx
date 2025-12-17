@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // Sample icons you can replace with your real icons or images

@@ -46,13 +46,13 @@ export default function Home() {
     <>
       <ChartHeader />
 
-      <section className="mt-4 md:mt-12 px-4 py-4">
+      <section className="mt-4 md:mt-12 py-4">
         <InviteBanner />
 
         {/* referral rules div */}
         <div className="flex flex-col md:flex-row w-full md:gap-2 md:max-w-225 mx-auto">
           {/* referral code input */}
-          <div className="bg-[#010501] mt-5 py-3 md:px-4 rounded-md">
+          <div className="bg-[#010501] mt-5 py-3 px-4 rounded-md">
             <div className="relative mt-4 flex justify-between items-center px-4 py-3 rounded-2xl bg-[#0b0f0e] border border-white/5 overflow-hidden md:w-110">
               <div className="pointer-events-none absolute inset-x-4 bottom-px h-px rounded-full bg-[linear-gradient(to_right,rgba(177,241,40,0),rgba(177,241,40,0.95),rgba(177,241,40,0))]" />
 
@@ -102,7 +102,7 @@ export default function Home() {
           </div>
 
           {/* referral rules */}
-          <div className=" bg-[#010501] mt-3 md:mt-5 md:px-4 rounded-xl">
+          <div className=" bg-[#010501] mt-3 md:mt-5 pb-4 md:pb-0 px-4 rounded-xl">
             <h2 className="font-manrope font-semibold text-sm md:text-base mb-3 md:mb-0">
               Referral rules
             </h2>
