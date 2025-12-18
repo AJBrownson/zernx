@@ -11,6 +11,8 @@ import { FaArrowUp } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
 import { IoChevronDown } from "react-icons/io5";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import { GoShareAndroid } from "react-icons/go";
+import { IoFolderOpenOutline } from "react-icons/io5";
 
 import bearish from "@/public/bearish.svg";
 import bullish from "@/public/bullish.svg";
@@ -47,6 +49,22 @@ export default function WalletPage() {
     { name: "Ethereum", symbol: "ETH", amount: "0.15828", value: "$10,234.23", icon: ether, trend: "bullish" },
     { name: "Ethereum", symbol: "ETH", amount: "0.15828", value: "$10,234.23", icon: ether, trend: "bullish" },
   ];
+
+  const transactions = [
+    { type: "sent", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "sent", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+    { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+  ];
+
 
 
   return (
@@ -304,7 +322,7 @@ export default function WalletPage() {
 
               {/* Chart Placeholder */}
               <div className="relative h-14 overflow-hidden bg-[#1A1F1C] animate-pulse flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4DFF9A] to-transparent opacity-40 blur-sm" />
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-[#4DFF9A] to-transparent opacity-40 blur-sm" />
                 <span className="relative z-10 text-xs font-medium tracking-wide text-[#E6ECE9]">
                   Loading chart...
                 </span>
@@ -327,7 +345,6 @@ export default function WalletPage() {
             <div className="space-y-4">
               <div className="bg-[#0B0F0A] p-4 rounded-md">
                 <p className="text-xs text-[#7C7C7C] mb-2">Select Asset</p>
-
 
                 {/* Asset dropdown */}
                 <details className="bg-[#121712] rounded-full group relative w-full">
@@ -378,30 +395,31 @@ export default function WalletPage() {
               </div>
 
               {/* QR + Address */}
-              <div className="bg-[#010501] rounded-2xl p-4 flex gap-4">
-                <Image
-                  src="/qr.png"
-                  alt="QR Code"
-                  width={120}
-                  height={120}
-                  className="rounded-lg bg-white p-2"
-                />
+              <div className="flex gap-4">
+                <div>
+                  <Image
+                    src="/qr-code2.svg"
+                    alt="QR Code"
+                    width={20}
+                    height={20}
+                    className="w-48 h-48 rounded-md"
+                  />
+                </div>
 
-                <div className="flex flex-col justify-between">
-                  <p className="text-xs break-all text-[#B5B5B5]">
+
+                <div className="flex flex-col space-y-4">
+                  <p className="pt-4 text-xs break-all text-[#B5B5B5]">
                     0x06193i092j9g9iu2ngmu0939i-4ti938hT432
                   </p>
+                  <button className="flex items-center gap-2 rounded-full border border-[#B1F128] w-40 px-3 py-1.5 text-xs text-[#B1F128]">
+                    <FiCopy size={14} />
+                    Copy Address
+                  </button>
 
-                  <div className="flex gap-2 mt-2">
-                    <button className="flex items-center gap-2 rounded-full border border-[#B1F128] px-3 py-1.5 text-xs text-[#B1F128]">
-                      <FiCopy size={14} />
-                      Copy Address
-                    </button>
-
-                    <button className="flex items-center gap-2 rounded-full bg-[#081F02] px-3 py-1.5 text-xs text-[#B1F128]">
-                      Share Address
-                    </button>
-                  </div>
+                  <button className="flex items-center gap-2 rounded-full border border-[#B1F128] w-40 px-3 py-1.5 text-xs text-[#B1F128]">
+                    <GoShareAndroid size={14} />
+                    Share Address
+                  </button>
                 </div>
               </div>
             </div>
@@ -409,11 +427,47 @@ export default function WalletPage() {
 
           {/* Activities tab content */}
           {activeTab === "activities" && (
-            <div className="rounded-2xl bg-[#010501] p-6 text-center">
-              <p className="text-sm text-[#B5B5B5]">
-                No recent activity
-              </p>
-            </div>
+            <>
+              {/* div below to be displayed when no activity has been recorded */}
+              {/* <div className="flex flex-col items-center justify-center space-y-4">
+               <IoFolderOpenOutline size={200} className="mt-10" />
+               <p className="font-medium text-lg">No Activity Yet</p>
+             </div> */}
+
+              <div className="h-125.5 w-full overflow-y-auto rounded-2xl px-4">
+                {transactions.map((tx, index) => (
+                  <div
+                    key={index}
+                    className="flex w-full items-center justify-between border-b border-[#1B1B1B] py-2 last:border-b-0"
+                  >
+                    {/* LEFT */}
+                    <div>
+                      <p className="text-sm font-medium text-[#FFFFFF] capitalize">
+                        {tx.type}
+                      </p>
+                      <p className="text-xs text-[#B5B5B5]">
+                        {tx.date}
+                      </p>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className="text-right">
+                      <p
+                        className={`text-sm font-medium ${tx.type === "received"
+                          ? "text-[#498F00]"
+                          : "text-[#FFFFFF]"
+                          }`}
+                      >
+                        {tx.amount}
+                      </p>
+                      <p className="text-xs text-[#B5B5B5]">
+                        {tx.usd}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
 
         </div>
