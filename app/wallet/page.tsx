@@ -16,6 +16,7 @@ import { IoFolderOpenOutline } from "react-icons/io5";
 import { IoArrowBack } from "react-icons/io5";
 import { CiStar } from "react-icons/ci";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
+import { TbArrowBarToRight } from "react-icons/tb";
 
 import bearish from "@/public/bearish.svg";
 import bullish from "@/public/bullish.svg";
@@ -86,10 +87,11 @@ export default function WalletPage() {
 
   return (
     <section className="mt-4 md:mt-12 py-4">
-      <div className="flex w-full md:gap-2 md:max-w-232 mx-auto bg-[#121712]">
+      <div className="rounded-2xl flex w-full md:gap-2 md:max-w-232 mx-auto bg-[#121712]">
 
         {/* LEFT PANEL */}
-        <div className="relative rounded-2xl border border-[#121712] bg-[#010501] font-manrope p-2 w-full max-w-98">
+        {/* <div className="relative rounded-2xl border border-[#121712] bg-[#010501] font-manrope p-2 w-full max-w-98"> */}
+        <div className="relative rounded-2xl border border-[#121712] bg-[#010501] font-manrope p-2 w-full max-w-98 h-[600px] flex flex-col">
           <div className="pointer-events-none absolute inset-x-4 bottom-px h-px rounded-full bg-[linear-gradient(to_right,rgba(177,241,40,0),rgba(177,241,40,0.95),rgba(177,241,40,0))]" />
           {/* Balance */}
           <div className="ml-5 mb-6">
@@ -134,83 +136,99 @@ export default function WalletPage() {
             </div>
           </div>
 
-          {/* Asset List */}
-          {activeLeftTab === "assets" && (
-            <ul className="space-y-3">
-              {assets.map((asset, i) => (
-                <li
-                  key={i}
-                  className="flex items-center justify-between rounded-xl bg-[#0E1310] px-2 py-3 hover:bg-[#141A16]"
-                >
-                  {/* Left: Asset Info */}
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src={asset.icon}
-                      alt={`${asset.symbol} icon`}
-                      width={20}
-                      height={20}
-                      className="opacity-90"
-                    />
-                    <span className="">
-                      <p className="text-sm font-medium text-[#FFFFFF]">
-                        {asset.symbol}
+          <div className="overflow-y-auto flex-1 pr-2">
+            {/* Asset List */}
+            {activeLeftTab === "assets" && (
+              <ul className="space-y-3">
+                {assets.map((asset, i) => (
+                  <li
+                    key={i}
+                    className="flex items-center justify-between rounded-xl bg-[#0E1310] px-2 py-3 hover:bg-[#141A16]"
+                  >
+                    {/* Left: Asset Info */}
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={asset.icon}
+                        alt={`${asset.symbol} icon`}
+                        width={20}
+                        height={20}
+                        className="opacity-90"
+                      />
+                      <span className="">
+                        <p className="text-sm font-medium text-[#FFFFFF]">
+                          {asset.symbol}
+                        </p>
+                        <p className="text-xs text-[#8A929A]">
+                          {asset.name}
+                        </p>
+                      </span>
+                    </div>
+
+                    {/* Middle: Chart */}
+                    <div className="">
+                      <Image
+                        src={asset.trend === "bearish" ? bearish : bullish}
+                        alt={`${asset.symbol} chart`}
+                        width={80}
+                        height={28}
+                        className="opacity-90"
+                      />
+                    </div>
+
+                    {/* Right: Numbers */}
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-[#FFF]">
+                        {asset.amount}
                       </p>
                       <p className="text-xs text-[#8A929A]">
-                        {asset.name}
+                        {asset.value}
                       </p>
-                    </span>
-                  </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-                  {/* Middle: Chart */}
-                  <div className="">
+            {/* NFT GRID */}
+            {activeLeftTab === "nft" && (
+              <div className="grid grid-cols-2 gap-3">
+                {nfts.map((nft) => (
+                  <button
+                    key={nft.id}
+                    onClick={() => setSelectedNft(nft)}
+                    className={`relative group aspect-square w-full rounded-2xl overflow-hidden transition-all duration-300
+                      ${selectedNft?.id === nft.id ? "" : "hover:ring-1 hover:ring-[#ffffff30]"}`}
+                  >
+                    {/* Image stretches to fill the button */}
                     <Image
-                      src={asset.trend === "bearish" ? bearish : bullish}
-                      alt={`${asset.symbol} chart`}
-                      width={80}
-                      height={28}
-                      className="opacity-90"
+                      src={nft.image}
+                      alt={nft.name}
+                      width={500}
+                      height={500}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                  </div>
 
-                  {/* Right: Numbers */}
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-[#FFF]">
-                      {asset.amount}
-                    </p>
-                    <p className="text-xs text-[#8A929A]">
-                      {asset.value}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+                    {/* GLASS CARD OVERLAY */}
+                    <div className="absolute bottom-1 left-2 right-2 flex items-center justify-between rounded-xl border border-white/20 bg-black/20 backdrop-blur-md px-3 py-2 text-left shadow-lg">
+                      <div>
+                        <p className="text-xs font-semibold text-white drop-shadow-md">
+                          {nft.name}
+                        </p>
+                        <p className="text-[10px] font-medium text-[#E0E0E0] drop-shadow-md">
+                          Floor: {nft.floor}
+                        </p>
+                      </div>
 
-          {/* NFT GRID */}
-          {activeLeftTab === "nft" && (
-            <div className="grid grid-cols-2 gap-3">
-              {nfts.map((nft) => (
-                <button
-                  key={nft.id}
-                  onClick={() => setSelectedNft(nft)}
-                  className={`text-left bg-[#0E1310] rounded-xl p-2 transition
-                    ${selectedNft?.id === nft.id ? "ring-2 ring-[#B1F128]" : "hover:bg-[#141A16]"}`}
-                >
-                  <Image
-                    src={nft.image}
-                    alt={nft.name}
-                    width={150}
-                    height={150}
-                    className="rounded-lg"
-                  />
-                  <p className="text-xs mt-2 text-white">{nft.name}</p>
-                  <p className="text-[11px] text-[#8A929A]">Floor: {nft.floor}</p>
-                </button>
-              ))}
-            </div>
-          )}
+                      <div className="text-white/80">
+                       <TbArrowBarToRight />
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
 
-
+          </div>
         </div>
 
         {/* RIGHT PANEL */}
@@ -270,9 +288,9 @@ export default function WalletPage() {
                   <Image
                     src={selectedNft.image}
                     alt={selectedNft.name}
-                    width={120}
-                    height={120}
-                    className="rounded-xl"
+                    width={500}
+                    height={300}
+                    className="w-full h-48 object-contain rounded-3xl mb-6"
                   />
 
                   <div>
@@ -289,15 +307,11 @@ export default function WalletPage() {
                     </div>
 
                     <div className="grid grid-cols-3 gap-y-6 w-full mt-4">
-                      {/* --- Row 1 --- */}
-
-                      {/* Column 1: Left */}
                       <div className="text-left">
                         <p className="text-white font-medium text-sm">1.2M ETH</p>
                         <p className="text-[#B5B5B5] text-[10px]">Total volume</p>
                       </div>
 
-                      {/* Column 2: Block Centered, Text Left */}
                       <div className="flex justify-center">
                         <div className="flex flex-col">
                           <p className="text-white font-medium text-sm">6.10 ETH</p>
@@ -305,21 +319,16 @@ export default function WalletPage() {
                         </div>
                       </div>
 
-                      {/* Column 3: Right */}
                       <div className="text-right">
                         <p className="text-white font-medium text-sm">3.05%</p>
                         <p className="text-[#B5B5B5] text-[10px]">Listed</p>
                       </div>
 
-                      {/* --- Row 2 --- */}
-
-                      {/* Column 1 */}
                       <div className="text-left">
                         <p className="text-white font-medium text-sm">5,320</p>
                         <p className="text-[#B5B5B5] text-[10px]">Owners</p>
                       </div>
 
-                      {/* Column 2: Block Centered, Text Left */}
                       <div className="flex justify-center">
                         <div className="flex flex-col">
                           <p className="text-white font-medium text-sm">Ethereum</p>
@@ -327,7 +336,7 @@ export default function WalletPage() {
                         </div>
                       </div>
 
-                      {/* Column 3 */}
+
                       <div className="text-right">
                         <p className="text-white font-medium text-sm">April 2025</p>
                         <p className="text-[#B5B5B5] text-[10px]">Creation date</p>
