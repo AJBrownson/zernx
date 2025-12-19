@@ -35,6 +35,7 @@ export default function WalletPage() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
 
+
   const handleCopy = async () => {
     if (!inputRef.current) return;
 
@@ -314,55 +315,24 @@ export default function WalletPage() {
                       </div>
                     </div>
 
-                    {activeSendTab === "single" ? (
-                      <>
-                        <div className="rounded-xl bg-[#0B0F0A] px-4 py-5">
-                          <p className="font-semibold text-xs mb-2">To:</p>
-                          <span className="relative w-full">
-                            <input
-                              ref={inputRef}
-                              placeholder="Enter Wallet Address"
-                              className="w-full rounded-xl bg-[#010501] px-4 py-5 text-sm text-[#E6ECE9] placeholder-[#6E7873] outline-none focus:ring-1 focus:ring-[#B1F128]"
-                            />
-                            {/* copy icon */}
-                            <button
-                              type="button"
-                              onClick={handleCopy}
-                              className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
-                            >
-                              {copied ? <FiCheck size={18} /> : <FiCopy size={18} />}
-                            </button>
-                          </span>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="rounded-xl bg-[#0B0F0A] px-4 py-5">
-                          <p className="font-normal text-xs mb-2 text-[#B5B5B5]">Add multiple wallet addresses or upload a list.</p>
-                          <span className="relative w-full">
-                            <input
-                              placeholder="Enter Wallet Addresses"
-                              className="w-full rounded-xl bg-[#010501] px-4 py-5 text-sm text-[#E6ECE9] placeholder-[#6E7873] outline-none focus:ring-1 focus:ring-[#B1F128]"
-                            />
-                            {/* copy icon */}
-                            <button
-                              type="button"
-                              className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
-                            >
-                              <FiCopy size={18} />
-                            </button>
-                          </span>
-                        </div>
-
-                        <button className="cursor-pointer w-full rounded-full border border-[#B1F128] bg-transparent py-2 text-sm font-medium text-[#B1F128] flex items-center justify-center gap-2">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M14 10v2.667A1.333 1.333 0 0112.667 14H3.333A1.333 1.333 0 012 12.667V10m9.333-5.333L8 1.333m0 0L4.667 4.667M8 1.333v9.334" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                          Attach CSV File
+                    <div className="rounded-xl bg-[#0B0F0A] px-4 py-5">
+                      <p className="font-semibold text-xs mb-2">To:</p>
+                      <span className="relative w-full">
+                        <input
+                          ref={inputRef}
+                          placeholder="Enter Wallet Address"
+                          className="w-full rounded-xl bg-[#010501] px-4 py-5 text-sm text-[#E6ECE9] placeholder-[#6E7873] outline-none focus:ring-1 focus:ring-[#B1F128]"
+                        />
+                        {/* copy icon */}
+                        <button
+                          type="button"
+                          onClick={handleCopy}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                        >
+                          {copied ? <FiCheck size={18} /> : <FiCopy size={18} />}
                         </button>
-                      </>
-                    )}
-
+                      </span>
+                    </div>
                     <button
                       onClick={() => setSendStep("confirm")}
                       className="cursor-pointer w-full rounded-full bg-[#B1F128] py-2 text-base font-semibold text-[#010501]">
@@ -382,89 +352,43 @@ export default function WalletPage() {
 
                   {/* Transaction Details */}
                   <div className="space-y-2 mb-2">
-                    {activeSendTab === "single" ? (
-                      <>
-                        <div className="rounded-xl bg-[#010501] px-4 py-4">
-                          <p className="text-xs text-[#B5B5B5] mb-1">From</p>
-                          <p className="text-sm text-[#B5B5B5]">0x06187ejie9urourT432</p>
-
-                          <div className="mt-5 flex justify-between items-start">
-                            <div>
-                              <p className="text-xs text-[#B5B5B5] mb-1">To:</p>
-                              <p className="text-sm text-[#B5B5B5]">0x06187ejie9urourT432</p>
-                            </div>
-                            <div className="text-right">
-                              <p className="text-xs text-[#B5B5B5] mb-1">Network</p>
-                              <p className="text-sm text-[#B5B5B5]">ETH</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="rounded-xl bg-[#010501] px-4 py-2 flex justify-between items-center">
-                          <span className="flex items-center gap-2">
-                            <p className="text-sm text-[#B5B5B5]">Network Fee:</p>
-                            <span className="text-[#B5B5B5]">
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <circle cx="6" cy="6" r="5.5" stroke="currentColor" />
-                                <text x="6" y="8.5" fontSize="8" textAnchor="middle" fill="currentColor">i</text>
-                              </svg>
-                            </span>
-                          </span>
-                          <div className="text-right">
-                            <p className="text-sm text-[#B5B5B5]">0.1ETH</p>
-                            <p className="text-xs text-[#B5B5B5]">$0.044</p>
-                          </div>
-                        </div>
-
-                        <button
-                          className="cursor-pointer w-full rounded-full bg-[#B1F128] py-2 text-base font-semibold text-[#010501]">
-                          Confirm
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <div className="rounded-xl bg-[#010501] px-4 py-4 space-y-4">
-
-                          <div>
-                            <p className="text-xs text-[#B5B5B5] mb-1">Total Recipients</p>
-                            <p className="text-sm text-[#B5B5B5]">12</p>
-                          </div>
+                    <div className="rounded-xl bg-[#010501] px-4 py-4">
+                      <p className="text-xs text-[#B5B5B5] mb-1">From</p>
+                      <p className="text-sm text-[#B5B5B5]">0x06187ejie9urourT432</p>
+                      
+                    <div className="mt-5 flex justify-between items-start">
+                      <div>
+                        <p className="text-xs text-[#B5B5B5] mb-1">To:</p>
+                        <p className="text-sm text-[#B5B5B5]">0x06187ejie9urourT432</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-[#B5B5B5] mb-1">Network</p>
+                        <p className="text-sm text-[#B5B5B5]">ETH</p>
+                      </div>
+                    </div>
+                    </div>
 
 
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <p className="text-xs text-[#B5B5B5] mb-1">Amount Per Recipient</p>
-                              <p className="text-sm text-[#B5B5B5]">10.0 ETH</p>
-                            </div>
-                            <div className="text-right">
-                              <p className="text-xs text-[#B5B5B5] mb-1">Network</p>
-                              <p className="text-sm text-[#B5B5B5]">ETH</p>
-                            </div>
-                          </div>
-                        </div>
+                    <div className="rounded-xl bg-[#010501] px-4 py-2 flex justify-between items-center">
+                      <span className="flex items-center gap-2">
+                        <p className="text-sm text-[#B5B5B5]">Network Fee:</p>
+                        <span className="text-[#B5B5B5]">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <circle cx="6" cy="6" r="5.5" stroke="currentColor" />
+                            <text x="6" y="8.5" fontSize="8" textAnchor="middle" fill="currentColor">i</text>
+                          </svg>
+                        </span>
+                      </span>
+                      <div className="text-right">
+                        <p className="text-sm text-[#B5B5B5]">0.1ETH</p>
+                        <p className="text-xs text-[#B5B5B5]">$0.044</p>
+                      </div>
+                    </div>
 
-                        <div className="rounded-xl bg-[#010501] px-4 py-2 flex justify-between items-center">
-                          <span className="flex items-center gap-2">
-                            <p className="text-sm text-[#B5B5B5]">Estimated Network Fee (Batch Send):</p>
-                            <span className="text-[#B5B5B5]">
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <circle cx="6" cy="6" r="5.5" stroke="currentColor" />
-                                <text x="6" y="8.5" fontSize="8" textAnchor="middle" fill="currentColor">i</text>
-                              </svg>
-                            </span>
-                          </span>
-                          <div className="text-right">
-                            <p className="text-sm text-[#B5B5B5]">$0.04460</p>
-                            <p className="text-xs text-[#B5B5B5]">$0.044</p>
-                          </div>
-                        </div>
-
-                        <button
-                          className="cursor-pointer w-full rounded-full bg-[#B1F128] py-2 text-base font-semibold text-[#010501]">
-                          Confirm Multi-Send
-                        </button>
-                      </>
-                    )}
+                    <button
+                      className="cursor-pointer w-full rounded-full bg-[#B1F128] py-2 text-base font-semibold text-[#010501]">
+                      Confirm
+                    </button>
                   </div>
                 </>
               )}
