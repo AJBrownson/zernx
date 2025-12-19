@@ -3,17 +3,15 @@
 import { useRef, useState } from "react";
 
 import Image from "next/image"
-import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOutline, IoChevronDown, IoArrowBack, IoClose } from "react-icons/io5";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { HiDownload } from "react-icons/hi";
 import { MdHistory } from "react-icons/md";
 import { FaArrowUp } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
-import { IoChevronDown } from "react-icons/io5";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import { GoShareAndroid } from "react-icons/go";
-import { IoFolderOpenOutline } from "react-icons/io5";
-import { IoArrowBack } from "react-icons/io5";
+// import { IoFolderOpenOutline } from "react-icons/io5";
 import { CiStar } from "react-icons/ci";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { TbArrowBarToRight } from "react-icons/tb";
@@ -39,6 +37,7 @@ export default function WalletPage() {
 
   const [selectedNft, setSelectedNft] = useState<typeof nfts[number] | null>(null);
 
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
@@ -90,8 +89,7 @@ export default function WalletPage() {
       <div className="rounded-2xl flex w-full md:gap-2 md:max-w-232 mx-auto bg-[#121712]">
 
         {/* LEFT PANEL */}
-        {/* <div className="relative rounded-2xl border border-[#121712] bg-[#010501] font-manrope p-2 w-full max-w-98"> */}
-        <div className="relative rounded-2xl border border-[#121712] bg-[#010501] font-manrope p-2 w-full max-w-98 h-[600px] flex flex-col">
+        <div className="relative rounded-2xl border border-[#121712] bg-[#010501] font-manrope p-2 w-full max-w-98 h-150 flex flex-col">
           <div className="pointer-events-none absolute inset-x-4 bottom-px h-px rounded-full bg-[linear-gradient(to_right,rgba(177,241,40,0),rgba(177,241,40,0.95),rgba(177,241,40,0))]" />
           {/* Balance */}
           <div className="ml-5 mb-6">
@@ -132,11 +130,21 @@ export default function WalletPage() {
 
             <div className="flex items-center gap-2">
               <Image src="/search-02.svg" alt="" width={20} height={20} className="bg-[#1B1B1B] p-1 rounded-full" />
-              <Image src="/search-02.svg" alt="" width={20} height={20} className="bg-[#1B1B1B] p-1 rounded-full" />
+              {/* TOGGLE FILTER BUTTON */}
+              <button
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className="bg-[#1B1B1B] h-5 w-5 flex items-center justify-center rounded-full cursor-pointer transition-colors hover:bg-[#252525]"
+              >
+                {isFilterOpen ? (
+                  <IoClose size={14} className="text-[#B5B5B5]" />
+                ) : (
+                  <Image src="/filter.svg" alt="" width={20} height={20} className="p-[2px]" />
+                )}
+              </button>
             </div>
           </div>
 
-          <div className="overflow-y-auto flex-1 pr-2">
+          <div className="overflow-y-auto flex-1">
             {/* Asset List */}
             {activeLeftTab === "assets" && (
               <ul className="space-y-3">
@@ -220,7 +228,7 @@ export default function WalletPage() {
                       </div>
 
                       <div className="text-white/80">
-                       <TbArrowBarToRight />
+                        <TbArrowBarToRight />
                       </div>
                     </div>
                   </button>
@@ -229,6 +237,59 @@ export default function WalletPage() {
             )}
 
           </div>
+
+          {/* FILTER DROPDOWN OVERLAY */}
+          {isFilterOpen && (
+            <div className="absolute top-35 right-2 z-50 w-70 rounded-3xl bg-[#0B0F0A] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.8)] border border-[#1B1B1B]">
+
+              {/* Section 1: Sort By */}
+              <div className="mb-5">
+                <h3 className="text-sm font-medium text-white mb-3">Sort By</h3>
+                <div className="space-y-2">
+                  {["Highest Value → Lowest", "Recent Activity"].map((label, i) => (
+                    <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                      <input type="radio" name="sort" className="peer sr-only" />
+                      <div className="w-4 h-4 rounded border border-[#3E453E] peer-checked:border-[#B1F128] peer-checked:bg-[#B1F128] transition-colors" />
+                      <span className="text-xs text-[#B5B5B5] group-hover:text-white transition-colors">{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Section 2: Token Category */}
+              <div className="mb-5">
+                <h3 className="text-sm font-medium text-white mb-3">Token Category</h3>
+                <div className="grid grid-cols-2 gap-x-2 gap-y-2">
+                  {["DeFi Tokens", "Gaming", "Meme Coins", "New Listings"].map((label, i) => (
+                    <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                      <input type="checkbox" className="peer sr-only" />
+                      <div className="w-4 h-4 rounded border border-[#3E453E] peer-checked:border-[#B1F128] peer-checked:bg-[#B1F128] shrink-0" />
+                      <span className="text-xs text-[#B5B5B5] group-hover:text-white transition-colors whitespace-nowrap">{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Section 3: Chain */}
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-white mb-3">Chain</h3>
+                <div className="grid grid-cols-2 gap-x-2 gap-y-2">
+                  {["BSC", "Polygon", "Ethereum", "Solana"].map((label, i) => (
+                    <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                      <input type="checkbox" className="peer sr-only" />
+                      <div className="w-4 h-4 rounded border border-[#3E453E] peer-checked:border-[#B1F128] peer-checked:bg-[#B1F128] shrink-0" />
+                      <span className="text-xs text-[#B5B5B5] group-hover:text-white transition-colors">{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Reset Button */}
+              <button className="w-full bg-[#B1F128] text-[#010501] font-semibold text-sm py-3 rounded-full hover:opacity-90 transition-opacity">
+                Reset filters
+              </button>
+            </div>
+          )}
         </div>
 
         {/* RIGHT PANEL */}
