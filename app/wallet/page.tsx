@@ -874,12 +874,29 @@ function WalletPageMobile() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState(false);
 
+  // Helper for copy function
   const handleCopy = async () => {
     if (!inputRef.current) return;
     await navigator.clipboard.writeText(inputRef.current.value);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
+
+  // Dummy Data
+  const balance = "4,631.21";
+  const assets = [
+    { name: "Bitcoin", symbol: "BTC", amount: "0.01912343", value: "$10,234.23", icon: bitcoin, trend: "bearish" },
+    { name: "Solana", symbol: "SOL", amount: "20,000.85", value: "$10,234.23", icon: solana, trend: "bullish" },
+    { name: "BNB Smart Chain", symbol: "BNB", amount: "1,580.8565", value: "$10,234.23", icon: bnb, trend: "bearish" },
+    { name: "Ethereum", symbol: "ETH", amount: "0.15828", value: "$10,234.23", icon: ethereum, trend: "bullish" },
+    { name: "Ethereum", symbol: "ETH", amount: "0.15828", value: "$10,234.23", icon: ether, trend: "bullish" },
+  ];
+  const nfts = [
+    { id: 1, name: "Cartoon-bird", floor: "6.10 ETH", image: "/nft1.svg" },
+    { id: 2, name: "Alien Amphibian", floor: "0 ETH", image: "/nft2.svg" },
+    { id: 3, name: "Cyber Guy", floor: "1.2 ETH", image: "/nft3.svg" },
+    { id: 4, name: "Pixel Punk", floor: "0.8 ETH", image: "/nft4.svg" },
+  ];
 
   return (
     <div className="min-h-screen bg-[#050505] font-manrope text-white pb-10">
@@ -924,10 +941,11 @@ function WalletPageMobile() {
       </div>
 
       {/* 4. MAIN CARD */}
-      <div className="mx-4 rounded-4xl border border-[#1A1F1A] bg-[#0A0D0A] p-5 relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-[#B1F128] to-transparent opacity-50" />
+      <div className="mx-4 rounded-[32px] border border-[#1A1F1A] bg-[#0A0D0A] p-5 relative overflow-hidden">
+        {/* Glow Line */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#B1F128] to-transparent opacity-50" />
 
-        {/* Balance */}
+        {/* Balance Section */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[#8A929A] text-xs">Total Balance</span>
@@ -955,7 +973,10 @@ function WalletPageMobile() {
           </button>
         </div>
 
-        {/* Dynamic Content */}
+        {/* =========================================================
+            DYNAMIC CONTENT AREA
+           ========================================================= */}
+        {/* VIEW 1: ASSETS */}
         {activeTab === 'assets' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-center mb-4">
@@ -996,19 +1017,30 @@ function WalletPageMobile() {
           </div>
         )}
 
+        {/* VIEW 2: SEND FLOW */}
         {activeTab === 'send' && (
           <div className="animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="flex border-b border-[#1A1F1A] mb-6">
-              <button onClick={() => setActiveSendTab('single')} className={`flex-1 pb-3 text-sm font-medium border-b-2 transition-colors ${activeSendTab === 'single' ? 'border-[#B1F128] text-[#B1F128]' : 'border-transparent text-[#8A929A]'}`}>Send To One</button>
-              <button onClick={() => setActiveSendTab('multi')} className={`flex-1 pb-3 text-sm font-medium border-b-2 transition-colors ${activeSendTab === 'multi' ? 'border-[#B1F128] text-[#B1F128]' : 'border-transparent text-[#8A929A]'}`}>Multi-Send</button>
-            </div>
-
             {sendStep === 'form' ? (
+              /* ================= FORM STEP ================= */
               <>
+                <div className="flex border-b border-[#1A1F1A] mb-6">
+                  <button onClick={() => setActiveSendTab('single')} className={`flex-1 pb-3 text-sm font-medium border-b-2 transition-colors ${activeSendTab === 'single' ? 'border-[#B1F128] text-[#B1F128]' : 'border-transparent text-[#8A929A]'}`}>Send To One</button>
+                  <button onClick={() => setActiveSendTab('multi')} className={`flex-1 pb-3 text-sm font-medium border-b-2 transition-colors ${activeSendTab === 'multi' ? 'border-[#B1F128] text-[#B1F128]' : 'border-transparent text-[#8A929A]'}`}>Multi-Send</button>
+                </div>
+
                 <div className="bg-[#0F120F] rounded-2xl p-4 flex justify-between items-center border border-[#1A1F1A] mb-4">
                   <div className="flex items-center gap-3">
-                    <Image src={ethereum} alt="ETH" width={40} height={40} />
-                    <div><div className="flex items-center gap-1 cursor-pointer"><span className="text-lg font-bold text-white">ETH</span><IoChevronDown className="text-[#8A929A]" /></div><span className="text-xs text-[#8A929A]">Ethereum</span></div>
+                    <div className="relative">
+                      <Image src={ethereum} alt="ETH" width={40} height={40} />
+                      {/* Dropdown arrow next to coin */}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1 cursor-pointer">
+                        <span className="text-lg font-bold text-white">ETH</span>
+                        <IoChevronDown className="text-[#8A929A]" />
+                      </div>
+                      <span className="text-xs text-[#8A929A]">Ethereum</span>
+                    </div>
                   </div>
                   <div className="text-right">
                     <div className="flex items-center gap-1 justify-end text-[#8A929A] text-[10px] mb-0.5"><BsWallet2 /><span>0.0342ETH</span></div>
@@ -1036,27 +1068,175 @@ function WalletPageMobile() {
                 <button onClick={() => setSendStep('confirm')} className="w-full bg-[#B1F128] text-black font-bold py-4 rounded-full text-sm hover:opacity-90 transition-opacity">Next</button>
               </>
             ) : (
-              <div className="animate-in fade-in zoom-in-95 duration-200">
-                <div className="bg-[#0F120F] rounded-2xl p-4 border border-[#1A1F1A] mb-6 space-y-4">
-                  <h3 className="text-center text-[#8A929A] text-sm">Confirm Transaction</h3>
-                  <div className="bg-[#050505] p-3 rounded-xl"><p className="text-xs text-[#8A929A]">Total Amount</p><p className="text-xl font-bold text-white">11.496 ETH</p></div>
-                  <div className="flex justify-between text-xs"><span className="text-[#8A929A]">Network Fee</span><span className="text-white">0.004 ETH</span></div>
-                  <div className="flex justify-between text-xs"><span className="text-[#8A929A]">Total USD</span><span className="text-white">$24,120.50</span></div>
+              /* ================= CONFIRM STEP ================= */
+              <div className="animate-in fade-in zoom-in-95 duration-200 pt-2">
+
+                {/* Go Back Button */}
+                <div className="flex justify-end mb-8">
+                  <button
+                    onClick={() => setSendStep('form')}
+                    className="flex items-center gap-2 border border-[#B1F128] text-[#B1F128] px-5 py-2 rounded-xl text-xs font-bold transition-opacity hover:opacity-80"
+                  >
+                    <IoArrowBack size={16} />
+                    <span>Go Back</span>
+                  </button>
                 </div>
-                <div className="flex gap-3">
-                  <button onClick={() => setSendStep('form')} className="flex-1 bg-transparent border border-[#B1F128] text-[#B1F128] font-bold py-4 rounded-full text-sm">Back</button>
-                  <button className="flex-1 bg-[#B1F128] text-black font-bold py-4 rounded-full text-sm">Confirm Send</button>
-                </div>
+
+                {activeSendTab === 'single' ? (
+                  // Single Send Confirm Details
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-xs text-[#8A929A] mb-1">From:</p>
+                      <p className="text-xs text-[#E0E0E0] font-medium font-mono">0x06187ejie9urourT432</p>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                      <div className="max-w-[70%]">
+                        <p className="text-xs text-[#8A929A] mb-1">To:</p>
+                        <p className="text-xs text-[#E0E0E0] font-medium font-mono break-all">0x06187ejie9urourT432</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-[#8A929A] mb-1">Network</p>
+                        <p className="text-xs text-[#E0E0E0] font-medium">ETH</p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                      <div className="flex items-center gap-1 text-[#8A929A] text-xs">
+                        <span>Network Fee:</span>
+                        <div className="border border-[#8A929A] rounded-full w-3 h-3 flex items-center justify-center text-[8px] opacity-70">i</div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-[#E0E0E0] font-medium">$0.04460</p>
+                        <p className="text-xs text-[#8A929A]">$0.044</p>
+                      </div>
+                    </div>
+
+                    <button className="w-full bg-[#B1F128] text-black font-bold py-4 rounded-full text-sm mt-8 hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(177,241,40,0.3)]">
+                      Confirm
+                    </button>
+                  </div>
+                ) : (
+                  // Multi Send Confirm Details
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-xs text-[#8A929A] mb-1">Total Recipients:</p>
+                      <p className="text-sm text-[#E0E0E0] font-medium">12</p>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="text-xs text-[#8A929A] mb-1">Amount Per Participant</p>
+                        <p className="text-sm text-[#E0E0E0] font-medium">100 ETH</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-[#8A929A] mb-1">Network</p>
+                        <p className="text-sm text-[#E0E0E0] font-medium">ETH</p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                      <div className="flex items-center gap-1 text-[#8A929A] text-xs max-w-[60%]">
+                        <span>Estimated Network Fee (Batch Send):</span>
+                        <div className="border border-[#8A929A] rounded-full w-3 h-3 flex items-center justify-center text-[8px] shrink-0 opacity-70">i</div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-[#E0E0E0] font-medium">$0.04460</p>
+                        <p className="text-xs text-[#8A929A]">$0.044</p>
+                      </div>
+                    </div>
+
+                    <button className="w-full bg-[#B1F128] text-black font-bold py-4 rounded-full text-sm mt-8 hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(177,241,40,0.3)]">
+                      Confirm Multi-Send
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
         )}
 
+        {/* RECEIVE FLOW */}
         {activeTab === 'receive' && (
-          <div className="animate-in fade-in slide-in-from-right-4 duration-300 flex flex-col items-center pt-4">
-            <div className="bg-white p-2 rounded-xl mb-4"><Image src="/qr-code2.svg" alt="QR" width={180} height={180} /></div>
-            <p className="text-white font-mono text-sm mb-4 break-all text-center px-4">0x71C...92F</p>
-            <button className="bg-[#151A15] border border-[#B1F128] text-[#B1F128] px-6 py-2 rounded-full text-xs font-bold">Copy Address</button>
+          <div className="space-y-4">
+            <div className="bg-black p-4 rounded-md">
+              <p className="text-xs text-[#7C7C7C] mb-2">Select Asset</p>
+
+              {/* Asset dropdown */}
+              <details className="bg-[#121712] rounded-full group relative w-full">
+                {/* Trigger */}
+                <summary
+                  className="w-full flex cursor-pointer list-none items-center rounded-full bg-[#121712] p-2 text-left outline-none"
+                >
+                  {/* Icon */}
+                  <Image
+                    src={ethereum}
+                    alt="Ethereum"
+                    width={36}
+                    height={36}
+                    className="shrink-0"
+                  />
+
+                  {/* Text */}
+                  <div className="ml-3 leading-tight">
+                    <p className="text-sm font-semibold text-[#FFF]">ETH</p>
+                    <p className="text-xs font-medium text-[#7C7C7C]">Ethereum</p>
+                  </div>
+                  <IoChevronDown
+                    size={16}
+                    className="ml-auto text-[#B5B5B5] transition-transform group-open:rotate-180"
+                  />
+                </summary>
+
+
+                {/* Dropdown menu */}
+                <div
+                  className="absolute left-0 z-10 mt-2 w-full min-w-55 rounded-xl bg-[#0B0F0A] p-2 shadow-[0_10px_30px_rgba(0,0,0,0.6)]">
+                  <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#141A16]">
+                    <Image src={ethereum} alt="" width={24} height={24} />
+                    <span className="text-sm text-[#E6ECE9]">Ethereum</span>
+                  </button>
+
+                  {/* Add more assets here */}
+                </div>
+              </details>
+            </div>
+
+            {/* Warning */}
+            <div className="rounded-xl bg-[#2B1F0D] px-1 py-3 text-xs text-center text-[#FFF]">
+              Only send <span className="font-semibold">Ethereum (ETH)</span> to this address.
+              Other assets will be lost forever.
+            </div>
+
+            {/* QR + Address */}
+            <div className="">
+              <div className="flex justify-center">
+                <Image
+                  src="/qr-code2.svg"
+                  alt="QR Code"
+                  width={20}
+                  height={20}
+                  className="w-48 h-48 rounded-md"
+                />
+              </div>
+
+              <div className="w-full">
+                <p className="text-center pt-4 text-xs break-all text-[#B5B5B5]">
+                  0x06193i092j9g9iu2ngmu0939i-4ti938hT432
+                </p>
+
+                <button className="flex w-full items-center justify-center gap-2 rounded-full border border-[#B1F128] px-3 py-1.5 text-xs text-[#B1F128] mt-3">
+                  <FiCopy size={14} />
+                  Copy Address
+                </button>
+
+                <button className="flex w-full items-center justify-center gap-2 rounded-full border border-[#B1F128] px-3 py-1.5 text-xs text-[#B1F128] mt-2">
+                  <GoShareAndroid size={14} />
+                  Share Address
+                </button>
+              </div>
+
+            </div>
           </div>
         )}
       </div>
