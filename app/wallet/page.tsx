@@ -45,18 +45,18 @@ const nfts = [
   { id: 6, name: "Sorcerer", floor: "0.8 ETH", image: "/nft6.svg" },
 ];
 const transactions = [
-  { type: "sent", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "sent", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
-  { type: "received", date: "Jan 4, 2024", amount: "0,017 ETH", usd: "$725.00" },
+  { type: "sent", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "sent", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
+  { type: "received", date: "Jan 4, 2024", amount: "0.017 ETH", usd: "$725.00" },
 ];
 
 
@@ -891,17 +891,11 @@ function WalletPageMobile() {
     { name: "Ethereum", symbol: "ETH", amount: "0.15828", value: "$10,234.23", icon: ethereum, trend: "bullish" },
     { name: "Ethereum", symbol: "ETH", amount: "0.15828", value: "$10,234.23", icon: ether, trend: "bullish" },
   ];
-  const nfts = [
-    { id: 1, name: "Cartoon-bird", floor: "6.10 ETH", image: "/nft1.svg" },
-    { id: 2, name: "Alien Amphibian", floor: "0 ETH", image: "/nft2.svg" },
-    { id: 3, name: "Cyber Guy", floor: "1.2 ETH", image: "/nft3.svg" },
-    { id: 4, name: "Pixel Punk", floor: "0.8 ETH", image: "/nft4.svg" },
-  ];
 
   return (
     <div className="min-h-screen bg-[#050505] font-manrope text-white pb-10">
 
-      {/* 1. TOP NAVIGATION */}
+      {/* TOP NAVIGATION */}
       <header className="flex items-center justify-between px-5 py-6">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-full bg-[#B1F128] flex items-center justify-center">
@@ -915,7 +909,7 @@ function WalletPageMobile() {
         </div>
       </header>
 
-      {/* 2. TICKER BAR */}
+      {/* TICKER BAR */}
       <div className="px-5 mb-6">
         <div className="flex justify-between items-center bg-[#0F120F] rounded-lg p-2 px-3 text-xs">
           <span className="text-white">50+ Active Chains</span>
@@ -927,7 +921,7 @@ function WalletPageMobile() {
         </div>
       </div>
 
-      {/* 3. BREADCRUMBS */}
+      {/* BREADCRUMBS */}
       <div className="px-5 mb-4 text-sm text-[#8A929A]">
         {activeTab === 'assets' ? (
           <span>Portfolio</span>
@@ -940,7 +934,7 @@ function WalletPageMobile() {
         )}
       </div>
 
-      {/* 4. MAIN CARD */}
+      {/* MAIN CARD */}
       <div className="mx-4 rounded-[32px] border border-[#1A1F1A] bg-[#0A0D0A] p-5 relative overflow-hidden">
         {/* Glow Line */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#B1F128] to-transparent opacity-50" />
@@ -976,7 +970,7 @@ function WalletPageMobile() {
         {/* =========================================================
             DYNAMIC CONTENT AREA
            ========================================================= */}
-        {/* VIEW 1: ASSETS */}
+        {/* ASSETS */}
         {activeTab === 'assets' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-center mb-4">
@@ -1017,7 +1011,7 @@ function WalletPageMobile() {
           </div>
         )}
 
-        {/* VIEW 2: SEND FLOW */}
+        {/* SEND FLOW */}
         {activeTab === 'send' && (
           <div className="animate-in fade-in slide-in-from-right-4 duration-300">
             {sendStep === 'form' ? (
@@ -1156,7 +1150,7 @@ function WalletPageMobile() {
           </div>
         )}
 
-        {/* RECEIVE FLOW */}
+        {/* RECEIVE TAB */}
         {activeTab === 'receive' && (
           <div className="space-y-4">
             <div className="bg-black p-4 rounded-md">
@@ -1237,6 +1231,32 @@ function WalletPageMobile() {
               </div>
 
             </div>
+          </div>
+        )}
+
+        {/* ACTIVITIES TAB*/}
+        {activeTab === 'activities' && (
+          <div className="animate-in fade-in slide-in-from-right-4 duration-300">
+             {/* List Container - No BG, just spacing */}
+             <div className="flex flex-col gap-6 mt-2">
+                {transactions.map((tx, i) => (
+                   <div key={i} className="flex justify-between items-start">
+                      {/* Left: Type & Date */}
+                      <div className="flex flex-col gap-1">
+                         <span className="text-sm font-bold text-white capitalize">{tx.type}</span>
+                         <span className="text-xs font-medium text-[#8A929A]">{tx.date}</span>
+                      </div>
+                      {/* Right: Amount & USD */}
+                      <div className="flex flex-col gap-1 items-end">
+                         {/* Conditional Color: Green for received, White for sent */}
+                         <span className={`text-sm font-bold ${tx.type === 'received' ? 'text-[#B1F128]' : 'text-white'}`}>
+                            {tx.amount}
+                         </span>
+                         <span className="text-xs font-medium text-[#8A929A]">{tx.usd}</span>
+                      </div>
+                   </div>
+                ))}
+             </div>
           </div>
         )}
       </div>
