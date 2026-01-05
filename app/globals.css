@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
-/* 1. THEME CONFIGURATION (Replaces tailwind.config.ts) */
 @theme {
   /* --- Colors --- */
   /* Brand */
   --color-primary: #9B51E0;
   --color-secondary: #00C2FF;
+  --color-blue: #00C2FF;
+  --color-black: #131313;
 
   /* Dark Theme Palette (Flattened) */
   --color-dark-bg: #0A0A0A;
-  --color-dark-card: #161616;
+  --color-dark-card: #0A0A0A;
   --color-dark-semi-bg: #1F1F1F;
-  --color-dark-stroke: #2A2A2A;
-  --color-dark-text-primary: #FFFFFF;
-  --color-dark-text-secondary: #A0A0A0;
+  --color-dark-stroke: #B5B5B5;
+  --color-dark-text-primary: #B5B5B5;
+  --color-dark-text-secondary: #F5F5F5;
   --color-dark-text-muted: #696969;
 
   /* Light Theme Palette */
@@ -26,7 +27,7 @@
   --color-light-text-muted: #9CA3AF;
 
   /* --- Typography --- */
-  --font-manrope: var(--font-manrope), sans-serif;
+  --font-family-satoshi: var(--font-satoshi);
 
   /* Font Sizes (Size + Line Height) */
   /* Note: In v4, font-weight is usually applied via utility (e.g., font-bold) separately */

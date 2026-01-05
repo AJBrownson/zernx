@@ -1,19 +1,16 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { Hero } from '@/components/sections/Hero';
-import { Problem } from '@/components/sections/Problem';
-import { Features } from '@/components/sections/Features';
-import { DEX } from '@/components/sections/DEX';
-import { Token } from '@/components/sections/Token';
-import { Roadmap } from '@/components/sections/Roadmap';
-import { Definition } from '@/components/sections/Definition';
-import { FAQs } from '@/components/sections/FAQs';
+import { Hero } from "@/components/sections/Hero";
+import { Problem } from "@/components/sections/Problem";
+import { Features } from "@/components/sections/Features";
+import { DEX } from "@/components/sections/DEX";
+import { Token } from "@/components/sections/Token";
+import { Roadmap } from "@/components/sections/Roadmap";
+import { Definition } from "@/components/sections/Definition";
+import { FAQs } from "@/components/sections/FAQs";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main className="min-h-screen bg-dark-bg pt-20">
+      <main className="min-h-screen">
         <section id="hero">
           <Hero />
         </section>
@@ -39,7 +36,6 @@ export default function Home() {
           <FAQs />
         </section>
       </main>
-      <Footer />
     </>
   );
 }
