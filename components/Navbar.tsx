@@ -27,7 +27,7 @@ export default function Navbar() {
             w-full md:w-auto md:min-w-300
             flex items-center justify-between
             px-4 py-3 md:px-6 md:py-3
-            bg-dark-bg/80 backdrop-blur-md
+            bg-dark-bg/20 backdrop-blur-md
             border-b md:border border-white/10
             md:rounded-full md:shadow-lg-dark
             transition-all duration-300 font-satoshi

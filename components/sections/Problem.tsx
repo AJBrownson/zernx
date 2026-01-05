@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-// Image constants
-const imgCoins01 = 'https://www.figma.com/api/mcp/asset/0ec78eda-db9f-4eb3-942d-280eaf314acb';
-const imgRobot02 = 'https://www.figma.com/api/mcp/asset/edf01ffc-9c0c-4352-ab2c-8e1cdcaff64e';
-const imgValidationApproval = 'https://www.figma.com/api/mcp/asset/f2fc02dd-f841-4298-a9c0-b9d5c58b5688';
-const imgUserBlock01 = 'https://www.figma.com/api/mcp/asset/3b0bfa32-a934-4ce2-ba57-a806d4d58a5a';
-const imgLine7241 = 'https://www.figma.com/api/mcp/asset/bb94a1d0-004d-4e62-bee4-9662334dcc87';
+// Placeholder Image constants
+const imgCoins01 = "/coins.svg";
+const imgRobot02 = "/robot.svg";
+const imgValidationApproval = "/validation.svg";
+const imgUserBlock01 = "/user-block.svg";
 
 type ThreatCardProps = {
   icon: string;
@@ -13,19 +12,48 @@ type ThreatCardProps = {
   description: string;
 };
 
+// Data for the cards
+const threatCardsData = [
+  {
+    icon: imgCoins01,
+    title: "Scam Tokens",
+    description: "Fake assets that drain funds",
+  },
+  {
+    icon: imgRobot02,
+    title: "MEV & Slippage",
+    description: "Value lost before execution",
+  },
+  {
+    icon: imgValidationApproval,
+    title: "Dangerous Approvals",
+    description: "Unlimited access risks",
+  },
+  {
+    icon: imgUserBlock01,
+    title: "Human Errors",
+    description: "Costly clicks and mistakes",
+  },
+];
+
 function ThreatCard({ icon, title, description }: ThreatCardProps) {
   return (
-    <div className="flex flex-col gap-6 items-center w-56 text-center">
-      <div className="relative w-26 h-26 rounded-3xl border-2 border-primary bg-dark-card flex items-center justify-center">
+    <div className="flex flex-col gap-4 items-center text-center z-10 w-full max-w-[180px]">
+      {/* Card Box - Fixed Height for alignment */}
+      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-[#161616] border border-white/5 flex items-center justify-center shadow-lg shadow-black/50 shrink-0">
         <img
           src={icon}
           alt={title}
-          className="w-12 h-12"
+          className="w-10 h-10 md:w-12 md:h-12 opacity-80"
         />
       </div>
-      <div className="flex flex-col gap-2">
-        <h3 className="text-white text-xl font-bold">{title}</h3>
-        <p className="text-dark-text-secondary text-lg">{description}</p>
+
+      {/* Text Content */}
+      <div className="flex flex-col ">
+        <h3 className="text-white text-sm md:text-base font-bold">{title}</h3>
+        <p className="text-[#A0A0A0] text-xs md:text-sm leading-relaxed">
+          {description}
+        </p>
       </div>
     </div>
   );
@@ -33,46 +61,62 @@ function ThreatCard({ icon, title, description }: ThreatCardProps) {
 
 export function Problem() {
   return (
-    <div className="w-full flex flex-col gap-20 items-center py-20 px-4 md:px-8 lg:px-0">
-      {/* Header */}
-      <div className="flex flex-col gap-6 items-center text-center max-w-2xl">
-        <h2 className="text-4xl md:text-5xl font-medium text-white leading-tight">
-          <span className="text-dark-text-secondary">Most DEX users trade blind. </span>
-          We change that.
+    <section className="w-full flex flex-col gap-16 items-center py-20 px-4 md:px-8 lg:px-0 font-sans">
+      {/* Header Section */}
+      <div className="flex flex-col gap-4 items-center text-center max-w-2xl">
+        <h2 className="text-3xl md:text-5xl font-medium leading-tight tracking-tight">
+          <span className="text-[#A0A0A0]">Most DEX users trade blind.</span>
+          <br />
+          <span className="text-white">We change that.</span>
         </h2>
-        <p className="text-lg md:text-xl text-dark-text-secondary">
-          Risky tokens and bad trades cost users every day. ZernX watches each transaction so you can trade with confidence.
+        <p className="text-sm md:text-lg text-[#A0A0A0] max-w-lg mx-auto leading-relaxed">
+          Risky tokens and bad trades cost users every day. ZernX watches each
+          transaction so you can trade with confidence.
         </p>
       </div>
 
-      {/* Threat Cards */}
-      <div className="relative w-full flex flex-col md:flex-row gap-12 md:gap-22 items-stretch justify-center flex-wrap">
-        {/* Connecting line (hidden on mobile) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl hidden lg:flex items-center pointer-events-none">
-          <img src={imgLine7241} alt="" className="w-full h-auto opacity-50" />
+      {/* Main Content Wrapper */}
+      <div className="w-full max-w-6xl mx-auto">
+        {/* --- MOBILE VIEW (Two Stacked Rows) --- */}
+        <div className="flex flex-col gap-12 lg:hidden">
+          {/* Row 1 */}
+          <div className="relative flex justify-between gap-4 px-4 sm:px-12">
+            {/* Gradient Line: Positioned at top-10 (40px) which is center of h-20 (80px) card */}
+            <div
+              className="absolute left-0 right-0 top-10 h-px z-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, #2A2A2A 0%, #9B51E0 50%, #2A2A2A 100%)",
+              }}
+            />
+            <ThreatCard {...threatCardsData[0]} />
+            <ThreatCard {...threatCardsData[1]} />
+          </div>
+
+          {/* Row 2 */}
+          <div className="relative flex justify-between gap-4 px-4 sm:px-12">
+            {/* Gradient Line */}
+            <div
+              className="absolute left-0 right-0 top-10 h-px z-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, #2A2A2A 0%, #9B51E0 50%, #2A2A2A 100%)",
+              }}
+            />
+            <ThreatCard {...threatCardsData[2]} />
+            <ThreatCard {...threatCardsData[3]} />
+          </div>
         </div>
 
-        <ThreatCard
-          icon={imgCoins01}
-          title="Scam Tokens"
-          description="Fake assets that drain funds"
-        />
-        <ThreatCard
-          icon={imgRobot02}
-          title="MEV & Slippage"
-          description="Value lost before execution"
-        />
-        <ThreatCard
-          icon={imgValidationApproval}
-          title="Dangerous Approvals"
-          description="Unlimited access risks"
-        />
-        <ThreatCard
-          icon={imgUserBlock01}
-          title="Human Errors"
-          description="Costly clicks and mistakes"
-        />
+        {/* --- DESKTOP VIEW --- */}
+        <div className="hidden lg:grid grid-cols-4 relative gap-8 justify-items-center">
+          <div className="max-w-236 mx-auto absolute left-0 right-0 top-24 h-px z-0 opacity-80 bg-linear-to-r from-[#2A2A2A] via-primary to-[#2A2A2A]" />
+
+          {threatCardsData.map((card, index) => (
+            <ThreatCard key={index} {...card} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

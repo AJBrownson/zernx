@@ -13,34 +13,24 @@ export const Hero: FC<HeroProps> = ({ className = "" }) => {
       className={`relative font-satoshi w-full min-h-screen overflow-hidden bg-dark-bg ${className}`}
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-linear-to-b from-dark-card to-dark-bg" />
+      <div className="absolute inset-0 w-full h-full z-0">
+        <Image
+          src="/hero-bg.svg"
+          alt="Background Gradient"
+          fill
+          priority
+          className="object-contain w-100 object-center"
+          quality={100}
+        />
 
-        {/* Glowing Orbs - Mobile */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl md:w-96 md:h-96" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl md:w-full md:h-full" />
-
-        {/* Grid Pattern Background */}
-        <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" width="100%" height="100%">
-            <defs>
-              <pattern
-                id="grid"
-                width="40"
-                height="40"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 40 0 L 0 0 0 40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.5"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
+        <div className="absolute inset-0 w-full h-full opacity-60">
+          <Image
+            src="/hero-grid.svg"
+            alt="Grid Pattern"
+            fill
+            className="object-cover object-center"
+            quality={100}
+          />
         </div>
       </div>
 
