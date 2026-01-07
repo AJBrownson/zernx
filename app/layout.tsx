@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { satoshi } from "./fonts"
+import { satoshi } from "./fonts";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,12 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${satoshi.variable} antialiased`}
-      >
-        <Navbar />
-        {children}
-        <Footer />
+      <body className={`${satoshi.variable} antialiased`}>
+          <Navbar />
+          {children}
+          <Footer />
       </body>
     </html>
   );

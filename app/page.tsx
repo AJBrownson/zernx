@@ -6,33 +6,34 @@ import { Token } from "@/components/sections/Token";
 import { Roadmap } from "@/components/sections/Roadmap";
 import { Definition } from "@/components/sections/Definition";
 import { FAQs } from "@/components/sections/FAQs";
+// import Test from "@/components/sections/test";
 
 export default function Home() {
   return (
     <>
-      <main className="min-h-screen">
+      <main className="min-h-screen max-w-7xl mx-auto">
         <section id="hero">
           <Hero />
         </section>
-        <section id="problem" className="max-w-7xl mx-auto">
+         <section id="problem">
           <Problem />
         </section>
-        <section id="features" className="max-w-7xl mx-auto">
+        <section id="features">
           <Features />
         </section>
-        <section id="dex" className="max-w-7xl mx-auto">
+        <section id="dex">
           <DEX />
         </section>
-        <section id="token" className="max-w-7xl mx-auto">
+        <section id="token">
           <Token />
         </section>
-        <section id="roadmap" className="max-w-7xl mx-auto">
+        <section id="roadmap">
           <Roadmap />
         </section>
-        <section id="definition" className="max-w-7xl mx-auto">
+        <section id="definition">
           <Definition />
         </section>
-        <section id="faq" className="max-w-7xl mx-auto">
+        <section id="faq">
           <FAQs />
         </section>
       </main>

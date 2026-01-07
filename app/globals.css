@@ -10,7 +10,7 @@
   --color-stroke: #B5B5B5;
 
   /* Dark Theme Palette (Flattened) */
-  --color-dark-bg: #0A0A0A;
+  --color-dark-bg: #0A0A0A; 
   --color-dark-card: #0A0A0A;
   --color-dark-semi-bg: #1F1F1F;
   --color-dark-stroke: #B5B5B5;
@@ -28,7 +28,7 @@
   --color-light-text-muted: #9CA3AF;
 
   /* --- Typography --- */
-  --font-family-satoshi: var(--font-satoshi);
+  --font-satoshi: var(--font-satoshi);
 
   /* Font Sizes (Size + Line Height) */
   /* Note: In v4, font-weight is usually applied via utility (e.g., font-bold) separately */
@@ -91,8 +91,6 @@
   /* Default to Dark Theme preference from your config */
   --background: var(--color-dark-bg);
   --foreground: var(--color-dark-text-primary);
-  /* Map Next.js font variable */
-  --font-manrope: var(--font-manrope);
 }
 
 @media (prefers-color-scheme: light) {
@@ -122,20 +120,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-manrope); 
-  
-  /* Your custom background setup */
-  background-image: url('/bgImage.svg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  font-family: var(--font-satoshi); 
 }
+
+@utility site-container {
+  max-width: 1700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 
 /* Mobile overrides */
 @media (max-width: 640px) {
   body {
-    background: #010501; /* Or use var(--color-dark-bg) if you want strict consistency */
+    background: #0A0A0A; /* Or use var(--color-dark-bg) if you want strict consistency */
     background-image: none;
     background-attachment: scroll;
   }

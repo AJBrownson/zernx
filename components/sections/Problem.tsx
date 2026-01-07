@@ -38,7 +38,7 @@ const threatCardsData = [
 
 function ThreatCard({ icon, title, description }: ThreatCardProps) {
   return (
-    <div className="flex flex-col gap-4 items-center text-center z-10 w-full max-w-[180px]">
+    <div className="flex flex-col gap-4 items-center text-center z-10 w-full max-w-[180px] ">
       {/* Card Box - Fixed Height for alignment */}
       <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-[#161616] border border-white/5 flex items-center justify-center shadow-lg shadow-black/50 shrink-0">
         <img
@@ -61,10 +61,10 @@ function ThreatCard({ icon, title, description }: ThreatCardProps) {
 
 export function Problem() {
   return (
-    <section className="w-full flex flex-col gap-16 items-center py-20 px-4 md:px-8 lg:px-0 font-sans">
+    <section className="w-full flex flex-col gap-16 items-center py-20 px-4 md:px-8 lg:px-0 font-satoshi bg-dark-bg">
       {/* Header Section */}
       <div className="flex flex-col gap-4 items-center text-center max-w-2xl">
-        <h2 className="text-3xl md:text-5xl font-medium leading-tight tracking-tight">
+        <h2 className="text-2xl md:text-4xl font-medium leading-tight tracking-tight">
           <span className="text-[#A0A0A0]">Most DEX users trade blind.</span>
           <br />
           <span className="text-white">We change that.</span>
